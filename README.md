@@ -15,6 +15,6 @@ Add a file called ".env" in the route directory of the main route and put this v
 
 PORT=<your port>
 	
-DB_CONNECTION=<your mongodb url "connection string" to your database"
+DB_CONNECTION=<your mongodb url "connection string" to your database">
 
 

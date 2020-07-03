@@ -8,12 +8,13 @@ const cors = require('cors');
 //use cors
 app.use(cors());
 
-route.post("/users", cors(), (req, res) => {
+const adduser = (req, res) => {
     const user = joi.object({
         ID: joi.string().required(),
         Username: joi.string().min(4),
         Password: joi.string().min(10).max(50),
-        Country: joi.string().required()
+        Country: joi.string().required(),
+        Avatar: joi.string()
     });
     var result;
     try {
@@ -25,10 +26,9 @@ route.post("/users", cors(), (req, res) => {
             if (err) console.log('internal error : ' + err);
             res.send('success')
         });
-
     }
     console.log(result)
 
-});
+}
 
-module.exports = route;
+module.exports = adduser;

@@ -1,9 +1,15 @@
 const mongoose = require('mongoose');
 
 const LocationsSchema = mongoose.Schema({
-    Name: String,
-    City: String,
-    Picture: String
+    Location: {
+        Name: String,
+        City: String,
+        Picture: String,
+    },
+    User: {
+        Name: String,
+        ID: String
+    }
 });
 
 const Locations = mongoose.model('Locations', LocationsSchema);

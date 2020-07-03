@@ -8,19 +8,10 @@ const cors = require('cors');
 
 //parse
 app.use(bodyParser.json());
-//Routes
-//users
-const AddUsers = require('./Routes/Users/addusers');
-app.use('/api', AddUsers);
-const GetUsers = require('./Routes/Users/getusers');
-app.use('/api', GetUsers);
-const Searchuser = require('./Routes/Users/search');
-app.use('/api', Searchuser);
-//locations
-const Addlocations = require('./Routes/locations/addlocations');
-app.use('/api', Addlocations);
-const Getlocations = require('./Routes/locations/getlocation');
-app.use('/api', Getlocations);
+
+const routes = require('./app');
+app.use('/', routes);
+
 
 
 

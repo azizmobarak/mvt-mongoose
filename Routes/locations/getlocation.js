@@ -21,16 +21,16 @@ route.get('/getlocations/:name', (req, res) => {
                         res.json(tab);
                     } else {
                         res.status(404)
-                            .send("not found")
+                            .send("not found");
                     }
                 });
             } else {
                 res.status(404)
-                    .send('not found')
+                    .send('not found');
             }
         } catch {
             res.status(404)
-                .send('error')
+                .send('error');
         }
     })
 

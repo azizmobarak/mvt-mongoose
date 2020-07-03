@@ -6,15 +6,21 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-//cors
-app.use(cors());
 //parse
 app.use(bodyParser.json());
 //Routes
+//users
 const AddUsers = require('./Routes/Users/addusers');
 app.use('/api', AddUsers);
 const GetUsers = require('./Routes/Users/getusers');
 app.use('/api', GetUsers);
+//locations
+const Addlocations = require('./Routes/locations/addlocations');
+app.use('/api', Addlocations);
+const Getlocations = require('./Routes/locations/getlocation');
+app.use('/api', Getlocations);
+
+
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, (err) => {
     if (err) console.log(err)

@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 const route = express.Router();
-const Users = require('../../Models/users');
 const joi = require('@hapi/joi');
 const User = require('../../Models/users');
-const mongoose = require('mongoose');
+const cors = require('cors');
 
-route.post("/users", (req, res) => {
+//use cors
+app.use(cors());
+
+route.post("/users", cors(), (req, res) => {
     const user = joi.object({
         ID: joi.string().required(),
         Username: joi.string().min(4),

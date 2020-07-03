@@ -14,6 +14,8 @@ const AddUsers = require('./Routes/Users/addusers');
 app.use('/api', AddUsers);
 const GetUsers = require('./Routes/Users/getusers');
 app.use('/api', GetUsers);
+const Searchuser = require('./Routes/Users/search');
+app.use('/api', Searchuser);
 //locations
 const Addlocations = require('./Routes/locations/addlocations');
 app.use('/api', Addlocations);

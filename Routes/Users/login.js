@@ -4,7 +4,7 @@ const route = express.Router();
 const User = require('../../Models/users');
 const jwt = require('jsonwebtoken');
 
-route.get("/users/login/:username/:password", (req, res) => {
+const userlogin = (req, res) => {
     console.log('1')
     try {
         User.find({ Username: req.params.username }, 'ID Password', (err, doc) => {
@@ -13,30 +13,30 @@ route.get("/users/login/:username/:password", (req, res) => {
             try {
                 console.log('2')
                 if (doc[0].Password === req.params.password) {
-                    console.log('4')
+                    console.log(doc[0]._id)
                     jwt.sign(doc[0].ID, 'loginautho', (error, token) => {
-                        if (error) console.log(error);
-                        console.log(token);
-                        console.log("found")
-                        try {
-                            res.send(token);
-                        } catch (e) { console.log(e) }
+                        if (error) res.send("Not authorized");
+                        else {
+                            console.log(token);
+                            console.log("found")
+                            try {
+                                res.send(token);
+                            } catch (e) { console.log(e) }
+                        }
                     })
                 } else {
                     res.status(404)
                         .send("Password or username not correct")
                 }
             } catch {
-                console.log('5')
                 res.status(404)
                     .send("not found")
             }
         });
     } catch {
-        console.log('6')
         res.status(404)
             .send('not found')
     }
-});
+}
 
-module.exports = route;
+module.exports = userlogin;

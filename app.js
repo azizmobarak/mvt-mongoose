@@ -5,6 +5,18 @@ const cors = require('cors');
 
 app.use(cors());
 
+//add multer for file upload
+const multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + file.originalname)
+    }
+})
+var upload = multer({ storage: storage })
+
 //routes directory
 const newlocation = require('./Routes/locations/new');
 const locattionsearch = require('./Routes/locations/search');
@@ -17,6 +29,7 @@ const removeRequestsById = require('./Routes/requests/remove');
 const removelocation = require('./Routes/locations/remove');
 const deleteAccount = require('./Routes/Users/remove');
 const updateUser = require('./Routes/Users/update');
+const useravatar = require('./Routes/Users/avatar');
 
 //routes url
 router.route('/locations/new').post(cors(), newlocation);
@@ -30,5 +43,6 @@ router.route('/requests/remove/:id').get(cors(), removeRequestsById);
 router.route('/locations/remove').post(cors(), removelocation);
 router.route('/users/remove').post(cors(), deleteAccount);
 router.route('/users/update').post(cors(), updateUser);
+router.route('/users/avatar').post(cors(), upload.single('avatar'), useravatar);
 
 module.exports = router;

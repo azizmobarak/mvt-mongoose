@@ -13,7 +13,9 @@ const routes = require('./app');
 app.use('/', routes);
 
 
-
+app.get("/", (req, res) => {
+    res.sendfile('./html.html', '/home');
+});
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, (err) => {
     if (err) console.log(err)

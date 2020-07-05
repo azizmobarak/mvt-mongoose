@@ -30,6 +30,8 @@ const removelocation = require('./Routes/locations/remove');
 const deleteAccount = require('./Routes/Users/remove');
 const updateUser = require('./Routes/Users/update');
 const useravatar = require('./Routes/Users/avatar');
+const showAvatar = require('./Routes/getimages/avatar');
+const countlocations = require('./Routes/locations/count');
 
 //routes url
 router.route('/locations/new').post(cors(), newlocation);
@@ -44,5 +46,7 @@ router.route('/locations/remove').post(cors(), removelocation);
 router.route('/users/remove').post(cors(), deleteAccount);
 router.route('/users/update').post(cors(), updateUser);
 router.route('/users/avatar').post(cors(), upload.single('avatar'), useravatar);
+router.route('/images/avatar/:name').get(cors(), showAvatar);
+router.route('/locations/count/:name').get(cors(), countlocations);
 
 module.exports = router;

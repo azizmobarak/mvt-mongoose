@@ -1,0 +1,24 @@
+version: "3"
+services: 
+    app :
+        image: node:12
+        container_name: mvt-app
+        restart: always
+        build: .
+        env_file: ./.env
+        ports: 
+            - '2300:4444'
+        environment:
+            "NODE_ENV": "development"
+        links: 
+            - mongo
+    mongo:
+        image: mongo
+        container_name: mongo-container
+        restart: always
+        env_file: ./.env
+        ports: 
+            - '27017:27017'
+        environment:
+            "DB_CONNECTION": "mongodb://localhost:27017/mvtdatabase?retryWrites=true&w=majority"
+    

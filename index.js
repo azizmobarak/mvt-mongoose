@@ -21,7 +21,7 @@ app.use('/', routes);
 
 
 app.get("/", (req, res) => {
-    res.sendfile('./html.html');
+    res.send('hello from main page')
 });
 
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, (err) => {
